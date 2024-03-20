@@ -7,56 +7,56 @@ export default {
   },
   data() {
     return {
-      posts: [
-        {
-          id: 1,
-          title: "My journey with Vue",
-          b: 1,
-          c: "'a'",
-          d: undefined,
-          e: {
-            a: "姓名"
-          },
-          f: "success",
-          g: () => {
-            console.log(1);
-          }
-        },
-        {
-          id: 2,
-          title: "Blogging with Vue",
-          b: "b",
-          c: "'b'",
-          d: 300,
-          e: {
-            b: "性别"
-          },
-          f: "warning",
-          g: () => {
-            console.log(2);
-          }
-        },
-        {
-          id: 3,
-          title: "Why Vue is so fun",
-          b: "c",
-          c: "'c'",
-          d: 400,
-          e: {
-            c: "职业"
-          },
-          f: "danger",
-          g: () => {
-            console.log(3);
-          }
-        }
-      ],
       test: "123",
-      postFontSize: 1
+      // posts: [
+      //   {
+      //     id: 1,
+      //     title: "My journey with Vue",
+      //     b: 1,
+      //     c: "'a'",
+      //     d: undefined,
+      //     e: {
+      //       a: "姓名"
+      //     },
+      //     f: "success",
+      //     g: () => {
+      //       console.log(1);
+      //     }
+      //   },
+      //   {
+      //     id: 2,
+      //     title: "Blogging with Vue",
+      //     b: "b",
+      //     c: "'b'",
+      //     d: 300,
+      //     e: {
+      //       b: "性别"
+      //     },
+      //     f: "warning",
+      //     g: () => {
+      //       console.log(2);
+      //     }
+      //   },
+      //   {
+      //     id: 3,
+      //     title: "Why Vue is so fun",
+      //     b: "c",
+      //     c: "'c'",
+      //     d: 400,
+      //     e: {
+      //       c: "职业"
+      //     },
+      //     f: "danger",
+      //     g: () => {
+      //       console.log(3);
+      //     }
+      //   }
+      // ],
+      // postFontSize: 1,
       // question: '',
       // answer: 'Questions usually contain a question mark. ;-)',
       // loading: false,
-      // list: [1, 2, 3]
+      // list: [1, 2, 3],
       // count: 1,
       // ex:true,
       // ok:false,
@@ -202,7 +202,7 @@ export default {
 <template>
   <div>
     <p>组件导入</p>
-    <div :style="{ fontSize: postFontSize + 'em' }">
+ <!--   <div :style="{ fontSize: postFontSize + 'em' }">
       <zhuce
         v-for="(post,index) in posts"
         :key="post.id"
@@ -214,15 +214,13 @@ export default {
         :propE="post.e"
         :propF="post.f"
         :propG="post.g"
-        @enlarge-text="postFontSize += 0.1"
+        @enlarge-text="(n)=>postFontSize += n"
         @click.once="postFontSize += 1"
       />
-    </div>
-    <div>
-      <zhuce>我是一个跳跳糖</zhuce>
-    </div>
-    <div value="test">ceshi</div>
-    <div :value="test">ceshi2</div>
+    </div>-->
+      <zhuce v-model.chiMianTiao="test"/>{{test}}
+   <!-- <div value="test">ceshi</div>
+    <div :value="test">ceshi2</div>-->
   </div>
 
   <!--<p>
