@@ -7,7 +7,8 @@ export default {
   },
   data() {
     return {
-      test: "123",
+      count:1,
+      // test: "123"
       // posts: [
       //   {
       //     id: 1,
@@ -95,6 +96,11 @@ export default {
       // firstName: 'John',
       // lastName: 'Doe'
     };
+  },
+  methods:{
+    onClick(){
+      this.count++;
+    },
   },
   //   watch: {
   //   // 每当 question 改变时，这个函数就会执行
@@ -202,7 +208,8 @@ export default {
 <template>
   <div>
     <p>组件导入</p>
- <!--   <div :style="{ fontSize: postFontSize + 'em' }">
+    <zhuce ni-hao="wo" class="chuan" @click="onClick"/>{{count}}
+    <!--   <div :style="{ fontSize: postFontSize + 'em' }">
       <zhuce
         v-for="(post,index) in posts"
         :key="post.id"
@@ -217,9 +224,9 @@ export default {
         @enlarge-text="(n)=>postFontSize += n"
         @click.once="postFontSize += 1"
       />
-    </div>-->
-      <zhuce v-model.chiMianTiao="test"/>{{test}}
-   <!-- <div value="test">ceshi</div>
+    </div>
+    <zhuce v-model="test"/>{{test}}
+    <div value="test">ceshi</div>
     <div :value="test">ceshi2</div>-->
   </div>
 
