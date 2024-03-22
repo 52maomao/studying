@@ -7,17 +7,18 @@ export default {
   },
   data() {
     return {
-      cc: 0
+      greetingMessage: "hello"
+      // cc: 0
     };
-  },
-  methods: {
-    count() {
-      this.cc++;
-    }
-    // zhuce(){
-    //     console.log(this.count++)
-    // }
   }
+  //   methods: {
+  //     count() {
+  //       this.cc++;
+  //     }
+  //     // zhuce(){
+  //     //     console.log(this.count++)
+  //     // }
+  //   }
   //   props: {
   //     mValue:String,
   // aaaa: String,
@@ -75,8 +76,24 @@ export default {
 };
 </script>
 <template>
-  <loading class="tou" />
+  <div>
+    <slot :text="greetingMessage" :count="1"></slot>
+    <slot name="header" message="hello"></slot>
+    <slot name="footer" message="hello"></slot>
+    <slot></slot>
+  </div>
   <!--<div>
+    <button class="slot">
+      <slot name="button"></slot>
+    </button>
+    <input />
+    <slot name="input"></slot>
+    <button>
+      <slot></slot>
+    </button>
+  </div>
+  <loading class="tou" />
+  <div>
     <button @click="$emit('enlarge-text',1)">Enlarge text</button>
     <button @click="submit">按钮</button>
     <slot />

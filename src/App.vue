@@ -1,13 +1,16 @@
 <script>
 import zhuce from "./zhuce.vue";
+import loading from "./loading.vue";
 
 export default {
   components: {
-    zhuce
+    zhuce,
+    loading
   },
   data() {
     return {
-      count:1,
+      count: 1,
+      test: "button",
       // test: "123"
       // posts: [
       //   {
@@ -97,11 +100,11 @@ export default {
       // lastName: 'Doe'
     };
   },
-  methods:{
-    onClick(){
-      this.count++;
-    },
-  },
+  // methods: {
+  //   onClick() {
+  //     this.count++;
+  //   }
+  // },
   //   watch: {
   //   // 每当 question 改变时，这个函数就会执行
   //   question(newQuestion, oldQuestion) {
@@ -208,8 +211,26 @@ export default {
 <template>
   <div>
     <p>组件导入</p>
-    <zhuce ni-hao="wo" class="chuan" @click="onClick"/>{{count}}
-    <!--   <div :style="{ fontSize: postFontSize + 'em' }">
+    <zhuce v-slot="{text,count}">{{ text }} {{ count }}</zhuce>
+    <zhuce>
+      <template #header="headerProps">{{ headerProps }}</template>
+
+      <template #default="defaultProps">{{ defaultProps }}</template>
+
+      <template #footer="footerProp">{{ footerProp }}</template>
+    </zhuce>
+    <!--<zhuce>
+      <template #[test]>
+        <span>Click me!{{count}}</span>
+      </template>
+      <template #input>
+        <loading/>
+      </template>
+        <div>刘懿萱</div>
+    </zhuce>
+    <zhuce ni-hao="wo" class="chuan" @click="onClick" />
+    {{count}}
+    <div :style="{ fontSize: postFontSize + 'em' }">
       <zhuce
         v-for="(post,index) in posts"
         :key="post.id"
@@ -225,7 +246,8 @@ export default {
         @click.once="postFontSize += 1"
       />
     </div>
-    <zhuce v-model="test"/>{{test}}
+    <zhuce v-model="test" />
+    {{test}}
     <div value="test">ceshi</div>
     <div :value="test">ceshi2</div>-->
   </div>
