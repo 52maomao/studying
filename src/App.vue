@@ -1,239 +1,310 @@
-<script>
+<script setup>
 import { computed } from "vue";
-import zhuce from "./zhuce.vue";
+// import zhuce from "./zhuce.vue";
 // import loading from "./loading.vue";
-import { defineAsyncComponent } from 'vue'
+// import { defineAsyncComponent } from 'vue'
+import { ref, shallowRef, reactive } from "vue";
+// const count = ref(0);
 
-const AsyncComp = defineAsyncComponent(() =>
-  import('./zhuce.vue')
-)
-export default {
-  components: {
-    zhuce,
-    AsyncComp
-    // loading
-  },
-  // provide: {
-  //   message: "hello!"
-  // },
-  data() {
-    return {
-      ttf: "3月24日"
-    };
-  },
-  provide() {
-    return {
-      ttf: computed(() => this.ttf),
-      message: "hello"
-    };
-  },
-  // data() {
-  //   return {
-  // count: 1,
-  // test: "button",
-  // test: "123"
-  // posts: [
-  //   {
-  //     id: 1,
-  //     title: "My journey with Vue",
-  //     b: 1,
-  //     c: "'a'",
-  //     d: undefined,
-  //     e: {
-  //       a: "姓名"
-  //     },
-  //     f: "success",
-  //     g: () => {
-  //       console.log(1);
-  //     }
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "Blogging with Vue",
-  //     b: "b",
-  //     c: "'b'",
-  //     d: 300,
-  //     e: {
-  //       b: "性别"
-  //     },
-  //     f: "warning",
-  //     g: () => {
-  //       console.log(2);
-  //     }
-  //   },
-  //   {
-  //     id: 3,
-  //     title: "Why Vue is so fun",
-  //     b: "c",
-  //     c: "'c'",
-  //     d: 400,
-  //     e: {
-  //       c: "职业"
-  //     },
-  //     f: "danger",
-  //     g: () => {
-  //       console.log(3);
-  //     }
-  //   }
-  // ],
-  // postFontSize: 1,
-  // question: '',
-  // answer: 'Questions usually contain a question mark. ;-)',
-  // loading: false,
-  // list: [1, 2, 3],
-  // count: 1,
-  // ex:true,
-  // ok:false,
-  // bet:false,
-  // item:[{name:"lili",age:18,sex:"girl"},
-  //   {name:"yangwei",age:50,sex:"boy"}],
-  // name: 'Vue.js',
-  // id:"",
-  // phone:"123",
-  // password:"",
-  // message:"",
-  // checked:"",
-  // selected: '',
-  // options: [
-  //   { text: 'One', value: 'A' },
-  //   { text: 'Two', value: 'B' },
-  //   { text: 'Three', value: 'C' }
-  // ],
-  // pick:"",
-  // first:"first",
-  // second:"second",
-  // arr:[3,1,2,4,5,6,7,8,9],
-  // count: 0,
-  // num:1,
-  // msg:"niao",
-  // rawHtml:'<div style="color: red">This should be red.</div>',
-  // bool:true,
-  // ttt:{
-  //   dynamicId:"name",
-  //   id:"name"
-  // },
-  // obj: {
-  //   nested: { count: 0 },
-  //   arr: ['foo', 'bar']
-  // },
-  // firstName: 'John',
-  // lastName: 'Doe'
-  //   };
-  // },
-  // methods: {
-  //   onClick() {
-  //     this.count++;
-  //   }
-  // },
-  //   watch: {
-  //   // 每当 question 改变时，这个函数就会执行
-  //   question(newQuestion, oldQuestion) {
-  //     if (newQuestion.includes('?')) {
-  //       this.getAnswer()
-  //     }
-  //   }
-  // },
-  // methods: {
-  //   async getAnswer() {
-  //     this.loading = true
-  //     this.answer = 'Thinking...'
-  //     try {
-  //       const res = await fetch('https://yesno.wtf/api')
-  //       this.answer = (await res.json()).answer
-  //     } catch (error) {
-  //       this.answer = 'Error! Could not reach the API. ' + error
-  //     } finally {
-  //       this.loading = false
-  //     }
-  //   }
-  // },
-  // methods:{
-  //   // person(){
-  //   //   this.item = this.item.filter((person) => person.name.match(/lili/))
-  //   //   console.log(this.item)
-  //   // },
-  //   // greet(event) {
-  //   //   console.log(this.phone)
-  //   //   console.log(this.password)
-  //     // alert(`Hello ${this.name}!`)
-  //     // if (event) {
-  //     //   console.log(event)
-  //     //   alert(event.target.tagName)
-  //     // }
-  //   },
-  // say(message) {
-  //   alert(message)
-  // },
-  // warn(event) {
-  //   if (event) {
-  //     event.preventDefault()
-  //   }
-  //   alert('Form cannot be submitted yet.')
-  // },
-  // },
-  // methods: {
-  //   arrayChange(){
-  //     // this.arr.push(3) // 从后插入一个值
-  //     // this.arr.pop()   // 从最后抛出一个值
-  //     // this.arr.shift() // 从最前方抛出一个值
-  //     // this.arr.unshift(1) // 从前插入一个值
-  //     // this.arr.splice(2,3,5,1000) // 从x处开始删除y个元素后添加a,b,c,d到x的位置
-  //     // this.arr.sort() // 正序排序
-  //     // this.arr.reverse() // 数组翻转
-  //     console.log(this.arr)
-  //   }
-  // },
-  //   increment(){
-  //     this.countPlusOne = 5;
-  //     for(i=0;i<10;i++){
-  //       alert("nihao")
-  //     }
-  //   },
-  //   increment() {
-  //     this.count++
-  //   },
-  //   mutateDeeply() {
-  //     this.obj.nested.count++
-  //     this.obj.arr.push('baz')
-  //     console.log(this.obj.arr)
-  //   }
-  // },
-  // computed: {
-  //   countPlusOne(){
-  //     this.count = 190;
-  //     return this.count + 1;
-  // }
-  // countPlusOne: {
-  //   get(){
-  //     return this.count + 1
-  //   },
-  //   set(){
-  //     alert("不知道计算属性不能改吗")
-  //   }
-  // }
-  // fullName: {
-  //   get() {
-  //     return this.firstName + ' ' + this.lastName
-  //   },
-  //   set(newValue) {
-  //     [this.firstName, this.lastName] = newValue.split(' ')
-  //   }
-  // }
-  // },
-  mounted() {
-    // console.log(`The initial count is ${this.count}.`)
-    // console.log(this.$refs.true)
-    console.log(this.posts);
-  }
-};
+// console.log(count); // { value: 0 }
+// console.log(count.value); // 0
+
+// count.value++;
+// console.log(count.value);
+
+// const AsyncComp = defineAsyncComponent(() =>
+//   import('./zhuce.vue')
+// )
+// export default {
+//   components: {
+//     zhuce
+//     AsyncComp
+//     loading
+//   },
+const obj = ref({
+  nested: { count: 0 },
+  arr: ["foo", "bar"]
+});
+
+function mutateDeeply() {
+  obj.value.nested.count++;
+}
+function log() {
+  obj.value.arr.push("baz");
+}
+log();
+console.log(obj.value.arr);
+
+// const test = shallowRef({count:0});
+// function num() {
+//   console.log(test._value.count++);
+// }
+// console.log(test._value)
+
+// const state = reactive({ count: 0 });
+
+// const raw = {}
+// const proxy = reactive(raw)
+// console.log(raw)
+// console.log(proxy)
+// console.log(proxy === raw)
+// console.log(proxy == raw)
+
+// const proxy = reactive({})
+// const raw = {}
+// proxy.nested = raw
+// console.log(proxy.nested === raw)
+// console.log(proxy.nested == raw)
+
+const count = ref(0);
+const state = reactive({
+  count
+});
+console.log(state.count);
+state.count = 2;
+console.log(count.value);
+const otherCount = ref(6);
+state.count = otherCount;
+console.log(state.count);
+console.log(count.value);
+
+const books = reactive([ref('Vue 3 Guide')])
+console.log(books[0].value)
+const map = reactive(new Map([['count', ref(0)]]))
+console.log(map.get('count').value)
+
+
+const bb = [ref('Vue 3 Guide')]
+const cc = ref(9527)
+const aa = reactive([ref('Vue 3 Guide')])
+console.log(aa[0])
+
+const {id} = object
+
+// provide: {
+//   message: "hello!"
+// },
+// data() {
+//   return {
+//     // ttf: "3月24日"
+//   };
+// },
+// provide() {
+//   return {
+//     ttf: computed(() => this.ttf),
+//     message: "hello"
+//   };
+// },
+// data() {
+//   return {
+// count: 1,
+// test: "button",
+// test: "123"
+// posts: [
+//   {
+//     id: 1,
+//     title: "My journey with Vue",
+//     b: 1,
+//     c: "'a'",
+//     d: undefined,
+//     e: {
+//       a: "姓名"
+//     },
+//     f: "success",
+//     g: () => {
+//       console.log(1);
+//     }
+//   },
+//   {
+//     id: 2,
+//     title: "Blogging with Vue",
+//     b: "b",
+//     c: "'b'",
+//     d: 300,
+//     e: {
+//       b: "性别"
+//     },
+//     f: "warning",
+//     g: () => {
+//       console.log(2);
+//     }
+//   },
+//   {
+//     id: 3,
+//     title: "Why Vue is so fun",
+//     b: "c",
+//     c: "'c'",
+//     d: 400,
+//     e: {
+//       c: "职业"
+//     },
+//     f: "danger",
+//     g: () => {
+//       console.log(3);
+//     }
+//   }
+// ],
+// postFontSize: 1,
+// question: '',
+// answer: 'Questions usually contain a question mark. ;-)',
+// loading: false,
+// list: [1, 2, 3],
+// count: 1,
+// ex:true,
+// ok:false,
+// bet:false,
+// item:[{name:"lili",age:18,sex:"girl"},
+//   {name:"yangwei",age:50,sex:"boy"}],
+// name: 'Vue.js',
+// id:"",
+// phone:"123",
+// password:"",
+// message:"",
+// checked:"",
+// selected: '',
+// options: [
+//   { text: 'One', value: 'A' },
+//   { text: 'Two', value: 'B' },
+//   { text: 'Three', value: 'C' }
+// ],
+// pick:"",
+// first:"first",
+// second:"second",
+// arr:[3,1,2,4,5,6,7,8,9],
+// count: 0,
+// num:1,
+// msg:"niao",
+// rawHtml:'<div style="color: red">This should be red.</div>',
+// bool:true,
+// ttt:{
+//   dynamicId:"name",
+//   id:"name"
+// },
+// obj: {
+//   nested: { count: 0 },
+//   arr: ['foo', 'bar']
+// },
+// firstName: 'John',
+// lastName: 'Doe'
+//   };
+// },
+// methods: {
+//   onClick() {
+//     this.count++;
+//   }
+// },
+//   watch: {
+//   // 每当 question 改变时，这个函数就会执行
+//   question(newQuestion, oldQuestion) {
+//     if (newQuestion.includes('?')) {
+//       this.getAnswer()
+//     }
+//   }
+// },
+// methods: {
+//   async getAnswer() {
+//     this.loading = true
+//     this.answer = 'Thinking...'
+//     try {
+//       const res = await fetch('https://yesno.wtf/api')
+//       this.answer = (await res.json()).answer
+//     } catch (error) {
+//       this.answer = 'Error! Could not reach the API. ' + error
+//     } finally {
+//       this.loading = false
+//     }
+//   }
+// },
+// methods:{
+//   // person(){
+//   //   this.item = this.item.filter((person) => person.name.match(/lili/))
+//   //   console.log(this.item)
+//   // },
+//   // greet(event) {
+//   //   console.log(this.phone)
+//   //   console.log(this.password)
+//     // alert(`Hello ${this.name}!`)
+//     // if (event) {
+//     //   console.log(event)
+//     //   alert(event.target.tagName)
+//     // }
+//   },
+// say(message) {
+//   alert(message)
+// },
+// warn(event) {
+//   if (event) {
+//     event.preventDefault()
+//   }
+//   alert('Form cannot be submitted yet.')
+// },
+// },
+// methods: {
+//   arrayChange(){
+//     // this.arr.push(3) // 从后插入一个值
+//     // this.arr.pop()   // 从最后抛出一个值
+//     // this.arr.shift() // 从最前方抛出一个值
+//     // this.arr.unshift(1) // 从前插入一个值
+//     // this.arr.splice(2,3,5,1000) // 从x处开始删除y个元素后添加a,b,c,d到x的位置
+//     // this.arr.sort() // 正序排序
+//     // this.arr.reverse() // 数组翻转
+//     console.log(this.arr)
+//   }
+// },
+//   increment(){
+//     this.countPlusOne = 5;
+//     for(i=0;i<10;i++){
+//       alert("nihao")
+//     }
+//   },
+//   increment() {
+//     this.count++
+//   },
+//   mutateDeeply() {
+//     this.obj.nested.count++
+//     this.obj.arr.push('baz')
+//     console.log(this.obj.arr)
+//   }
+// },
+// computed: {
+//   countPlusOne(){
+//     this.count = 190;
+//     return this.count + 1;
+// }
+// countPlusOne: {
+//   get(){
+//     return this.count + 1
+//   },
+//   set(){
+//     alert("不知道计算属性不能改吗")
+//   }
+// }
+// fullName: {
+//   get() {
+//     return this.firstName + ' ' + this.lastName
+//   },
+//   set(newValue) {
+//     [this.firstName, this.lastName] = newValue.split(' ')
+//   }
+// }
+// },
+// mounted() {
+//   // console.log(`The initial count is ${this.count}.`)
+//   // console.log(this.$refs.true)
+//   // console.log(this.posts);
+// }
+// };
 </script>
 
 <template>
   <div>
     <p>组件导入</p>
-    <input v-model="ttf" />
+    <div>{{obj.nested.count}}</div>
+    <button @click="mutateDeeply">{{ obj.nested.count }}</button>
+    <button @click="state.count++">{{ state.count }}</button>
+    <!--<input v-model="ttf" />
     <AsyncComp />
-    <!-- <zhuce /> -->
+    <zhuce />-->
     <!--<zhuce v-slot="{text,count}">{{ text }} {{ count }}</zhuce>
     <zhuce>
       <template #header="headerProps">{{ headerProps }}</template>

@@ -77,7 +77,7 @@ export default {
 </script>
 <template>
   <div>
-  <loading /></div>
+  </div>
   <!--<div>
     <slot :text="greetingMessage" :count="1"></slot>
     <slot name="header" message="hello"></slot>
