@@ -1,105 +1,125 @@
 <script>
+import { computed } from "vue";
 import zhuce from "./zhuce.vue";
-import loading from "./loading.vue";
+// import loading from "./loading.vue";
+import { defineAsyncComponent } from 'vue'
 
+const AsyncComp = defineAsyncComponent(() =>
+  import('./zhuce.vue')
+)
 export default {
   components: {
     zhuce,
-    loading
+    AsyncComp
+    // loading
   },
+  // provide: {
+  //   message: "hello!"
+  // },
   data() {
     return {
-      count: 1,
-      test: "button",
-      // test: "123"
-      // posts: [
-      //   {
-      //     id: 1,
-      //     title: "My journey with Vue",
-      //     b: 1,
-      //     c: "'a'",
-      //     d: undefined,
-      //     e: {
-      //       a: "姓名"
-      //     },
-      //     f: "success",
-      //     g: () => {
-      //       console.log(1);
-      //     }
-      //   },
-      //   {
-      //     id: 2,
-      //     title: "Blogging with Vue",
-      //     b: "b",
-      //     c: "'b'",
-      //     d: 300,
-      //     e: {
-      //       b: "性别"
-      //     },
-      //     f: "warning",
-      //     g: () => {
-      //       console.log(2);
-      //     }
-      //   },
-      //   {
-      //     id: 3,
-      //     title: "Why Vue is so fun",
-      //     b: "c",
-      //     c: "'c'",
-      //     d: 400,
-      //     e: {
-      //       c: "职业"
-      //     },
-      //     f: "danger",
-      //     g: () => {
-      //       console.log(3);
-      //     }
-      //   }
-      // ],
-      // postFontSize: 1,
-      // question: '',
-      // answer: 'Questions usually contain a question mark. ;-)',
-      // loading: false,
-      // list: [1, 2, 3],
-      // count: 1,
-      // ex:true,
-      // ok:false,
-      // bet:false,
-      // item:[{name:"lili",age:18,sex:"girl"},
-      //   {name:"yangwei",age:50,sex:"boy"}],
-      // name: 'Vue.js',
-      // id:"",
-      // phone:"123",
-      // password:"",
-      // message:"",
-      // checked:"",
-      // selected: '',
-      // options: [
-      //   { text: 'One', value: 'A' },
-      //   { text: 'Two', value: 'B' },
-      //   { text: 'Three', value: 'C' }
-      // ],
-      // pick:"",
-      // first:"first",
-      // second:"second",
-      // arr:[3,1,2,4,5,6,7,8,9],
-      // count: 0,
-      // num:1,
-      // msg:"niao",
-      // rawHtml:'<div style="color: red">This should be red.</div>',
-      // bool:true,
-      // ttt:{
-      //   dynamicId:"name",
-      //   id:"name"
-      // },
-      // obj: {
-      //   nested: { count: 0 },
-      //   arr: ['foo', 'bar']
-      // },
-      // firstName: 'John',
-      // lastName: 'Doe'
+      ttf: "3月24日"
     };
   },
+  provide() {
+    return {
+      ttf: computed(() => this.ttf),
+      message: "hello"
+    };
+  },
+  // data() {
+  //   return {
+  // count: 1,
+  // test: "button",
+  // test: "123"
+  // posts: [
+  //   {
+  //     id: 1,
+  //     title: "My journey with Vue",
+  //     b: 1,
+  //     c: "'a'",
+  //     d: undefined,
+  //     e: {
+  //       a: "姓名"
+  //     },
+  //     f: "success",
+  //     g: () => {
+  //       console.log(1);
+  //     }
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "Blogging with Vue",
+  //     b: "b",
+  //     c: "'b'",
+  //     d: 300,
+  //     e: {
+  //       b: "性别"
+  //     },
+  //     f: "warning",
+  //     g: () => {
+  //       console.log(2);
+  //     }
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "Why Vue is so fun",
+  //     b: "c",
+  //     c: "'c'",
+  //     d: 400,
+  //     e: {
+  //       c: "职业"
+  //     },
+  //     f: "danger",
+  //     g: () => {
+  //       console.log(3);
+  //     }
+  //   }
+  // ],
+  // postFontSize: 1,
+  // question: '',
+  // answer: 'Questions usually contain a question mark. ;-)',
+  // loading: false,
+  // list: [1, 2, 3],
+  // count: 1,
+  // ex:true,
+  // ok:false,
+  // bet:false,
+  // item:[{name:"lili",age:18,sex:"girl"},
+  //   {name:"yangwei",age:50,sex:"boy"}],
+  // name: 'Vue.js',
+  // id:"",
+  // phone:"123",
+  // password:"",
+  // message:"",
+  // checked:"",
+  // selected: '',
+  // options: [
+  //   { text: 'One', value: 'A' },
+  //   { text: 'Two', value: 'B' },
+  //   { text: 'Three', value: 'C' }
+  // ],
+  // pick:"",
+  // first:"first",
+  // second:"second",
+  // arr:[3,1,2,4,5,6,7,8,9],
+  // count: 0,
+  // num:1,
+  // msg:"niao",
+  // rawHtml:'<div style="color: red">This should be red.</div>',
+  // bool:true,
+  // ttt:{
+  //   dynamicId:"name",
+  //   id:"name"
+  // },
+  // obj: {
+  //   nested: { count: 0 },
+  //   arr: ['foo', 'bar']
+  // },
+  // firstName: 'John',
+  // lastName: 'Doe'
+  //   };
+  // },
   // methods: {
   //   onClick() {
   //     this.count++;
@@ -211,7 +231,10 @@ export default {
 <template>
   <div>
     <p>组件导入</p>
-    <zhuce v-slot="{text,count}">{{ text }} {{ count }}</zhuce>
+    <input v-model="ttf" />
+    <AsyncComp />
+    <!-- <zhuce /> -->
+    <!--<zhuce v-slot="{text,count}">{{ text }} {{ count }}</zhuce>
     <zhuce>
       <template #header="headerProps">{{ headerProps }}</template>
 
@@ -219,7 +242,7 @@ export default {
 
       <template #footer="footerProp">{{ footerProp }}</template>
     </zhuce>
-    <!--<zhuce>
+    <zhuce>
       <template #[test]>
         <span>Click me!{{count}}</span>
       </template>

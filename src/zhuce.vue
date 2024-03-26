@@ -7,8 +7,8 @@ export default {
   },
   data() {
     return {
-      greetingMessage: "hello"
-      // cc: 0
+    //   greetingMessage: "hello",
+      // cc: 0,
     };
   }
   //   methods: {
@@ -77,12 +77,14 @@ export default {
 </script>
 <template>
   <div>
+  <loading /></div>
+  <!--<div>
     <slot :text="greetingMessage" :count="1"></slot>
     <slot name="header" message="hello"></slot>
     <slot name="footer" message="hello"></slot>
     <slot></slot>
   </div>
-  <!--<div>
+  <div>
     <button class="slot">
       <slot name="button"></slot>
     </button>
