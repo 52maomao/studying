@@ -5,19 +5,30 @@ export default {
   components: {
     loading
   },
-  data() {
-    return {
-    //   greetingMessage: "hello",
-      // cc: 0,
-    };
-  }
+  props:['id','abc'], //路由传递的props只能应用在他定义的componment组件上，其他组件不可用
+  // data() {
+  //   return {
+  //     // greetingMessage: {},x
+  //     headerStyle: {
+  //       // textAlign: 'center',
+  //       color: "#fff",
+  //       height: "20%",
+  //       paddingInline: 50,
+  //       lineHeight: "64px",
+  //       backgroundColor: "#7dbcea",
+  //       position: "relative",
+  //       paddingLeft: "4%"
+  //     }
+  //     // cc: 0,
+  //   };
+  // }
   //   methods: {
   //     count() {
   //       this.cc++;
   //     }
-  //     // zhuce(){
-  //     //     console.log(this.count++)
-  //     // }
+  //     zhuce(){
+  //         console.log(this.count++)
+  //     }
   //   }
   //   props: {
   //     mValue:String,
@@ -77,6 +88,8 @@ export default {
 </script>
 <template>
   <div>
+    <div>zhuce{{id}}</div>
+    {{abc}}
   </div>
   <!--<div>
     <slot :text="greetingMessage" :count="1"></slot>

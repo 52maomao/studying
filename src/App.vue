@@ -1,9 +1,73 @@
-<script setup>
+<script>
 import { computed } from "vue";
 // import zhuce from "./zhuce.vue";
 // import loading from "./loading.vue";
 // import { defineAsyncComponent } from 'vue'
-import { ref, shallowRef, reactive } from "vue";
+// import { ref, shallowRef, reactive } from "vue";
+// const focu = {
+//   mounted: (el, binding) => {
+//     el.focus();
+//     console.log(binding.modifiers);
+//   }
+// };
+export default {
+  data() {
+    return {
+      Component: "myself"
+    };
+  }
+  // computed: {
+  //   test() {
+  //     return this.$route.params.id;
+  //   }
+  // },
+  // methods: {
+  //   aaa() {
+  //     this.$router.push({ path: "/zhuce", hash: "#team" });
+  //   }
+  // },
+};
+
+// export default {
+//   data() {
+//     return {
+//       show: true,
+//       show1: true,
+//       show2: true,
+//       items: [1, 2, 3, 4, 5],
+//       count: 0
+//     };
+//   },
+//   methods: {
+//     TGrandom(min, max) {
+//       let random = Math.random() * (max - min + 1) + min;
+//       let randomNum = Math.floor(random);
+//       return randomNum;
+//     },
+//     sc() {
+//       let r1 = this.TGrandom(0, this.items.length - 1);
+//       this.items.splice(r1, 1);
+//     },
+//     add() {
+//       let r2 = this.TGrandom(0, this.items.length - 1);
+//       this.items.splice(r2, 0, this.count++);
+//     }
+//   },
+//   mounted() {
+//     this.count = this.items.length + 1;
+//   }
+// };
+// export default {
+//   directives: {
+//     // 在模板中启用 v-focus
+//     focu
+//   },
+//   data() {
+//     return {
+//       baz: "hello"
+//     };
+//   }
+// };
 // const count = ref(0);
 
 // console.log(count); // { value: 0 }
@@ -21,19 +85,19 @@ import { ref, shallowRef, reactive } from "vue";
 //     AsyncComp
 //     loading
 //   },
-const obj = ref({
-  nested: { count: 0 },
-  arr: ["foo", "bar"]
-});
+// const obj = ref({
+//   nested: { count: 0 },
+//   arr: ["foo", "bar"]
+// });
 
-function mutateDeeply() {
-  obj.value.nested.count++;
-}
-function log() {
-  obj.value.arr.push("baz");
-}
-log();
-console.log(obj.value.arr);
+// function mutateDeeply() {
+//   obj.value.nested.count++;
+// }
+// function log() {
+//   obj.value.arr.push("baz");
+// }
+// log();
+// console.log(obj.value.arr);
 
 // const test = shallowRef({count:0});
 // function num() {
@@ -56,30 +120,27 @@ console.log(obj.value.arr);
 // console.log(proxy.nested === raw)
 // console.log(proxy.nested == raw)
 
-const count = ref(0);
-const state = reactive({
-  count
-});
-console.log(state.count);
-state.count = 2;
-console.log(count.value);
-const otherCount = ref(6);
-state.count = otherCount;
-console.log(state.count);
-console.log(count.value);
+// const count = ref(0);
+// const state = reactive({
+//   count
+// });
+// console.log(state.count);
+// state.count = 2;
+// console.log(count.value);
+// const otherCount = ref(6);
+// state.count = otherCount;
+// console.log(state.count);
+// console.log(count.value);
 
-const books = reactive([ref('Vue 3 Guide')])
-console.log(books[0].value)
-const map = reactive(new Map([['count', ref(0)]]))
-console.log(map.get('count').value)
+// const books = reactive([ref("Vue 3 Guide")]);
+// console.log(books[0].value);
+// const map = reactive(new Map([["count", ref(0)]]));
+// console.log(map.get("count").value);
 
-
-const bb = [ref('Vue 3 Guide')]
-const cc = ref(9527)
-const aa = reactive([ref('Vue 3 Guide')])
-console.log(aa[0])
-
-const {id} = object
+// const bb = [ref("Vue 3 Guide")];
+// const cc = ref(9527);
+// const aa = reactive([ref("Vue 3 Guide")]);
+// console.log(aa[0]);
 
 // provide: {
 //   message: "hello!"
@@ -295,13 +356,74 @@ const {id} = object
 // }
 // };
 </script>
-
 <template>
   <div>
-    <p>组件导入</p>
-    <div>{{obj.nested.count}}</div>
-    <button @click="mutateDeeply">{{ obj.nested.count }}</button>
-    <button @click="state.count++">{{ state.count }}</button>
+    <router-view/>
+  </div>
+  <!-- <div> -->
+    <!-- <p>组件导入 bbb&nbsp;&nbsp;cc</p>
+    <pre>aaa     bbb&nbsp;</pre> -->
+    <!-- <div> -->
+      <!-- <h1>Hello App!</h1> -->
+      <!-- <router-link to="/myself">111</router-link> -->
+      <!-- <router-link to="/loading/22">111</router-link> -->
+      <!-- <RouterView> -->
+      <!-- </RouterView> -->
+      <!-- <p>
+        <router-link to="/zhuce/1">按钮1</router-link>
+        <router-link to="/loading/6?q=xue">按钮2</router-link>
+      </p>
+      <router-view></router-view>
+      <router-view name="myself"></router-view>
+
+      <p>
+         <router-link to="/zhuce/1">Go to Home</router-link>
+        <router-link to="/loading/1">Go to About</router-link>
+        <router-link to="/myself/4/zhuce">123</router-link>
+        <router-link to="/loading/myself">去我的</router-link>
+        <router-link to="/loading/zhuce">去注册</router-link> 
+      </p>
+      <router-view></router-view>
+      <button @click="aaa()">请注册{{id}}</button>-->
+    <!-- </div> -->
+    <!-- <button @click="add()">添加</button>
+    <button @click="sc()">删减</button>
+    <button @click="items.sort(()=>Math.random()-0.5)">排序</button>
+    <TransitionGroup name="list" tag="ul">
+      <li v-for="item in items" :key="item">{{ item }}</li>
+    </TransitionGroup>
+    <TransitionGroup name="list1">
+      <li v-for="item in items" :key="item">{{ item }}</li>
+    </TransitionGroup>
+    <button @click="show = !show">Toggle</button>-->
+    <!-- <Transition name="test">
+      <p v-if="show">hello</p>
+    </Transition>
+    <button @click="show1 = !show1">Toggle2</button>
+    <Transition name="bounce">
+      <p v-if="show1" style="text-align: center;">Hello here is some bouncy text!</p>
+    </Transition>
+    <button @click="show2 = !show2">Toggle2</button>
+    <Transition
+      name="custom-classes"
+      enter-active-class="animate__animated animate__tada"
+      leave-active-class="animate__animated animate__bounceOutRight"
+    >
+      <p v-if="show2">hello</p>
+    </Transition>-->
+    <!-- <Transition :duration="3000" name="nested" appear>
+      <div v-if="show" class="outer">
+        <div class="inner">Hello</div>
+      </div>
+    </Transition>-->
+    <!-- <div :style="{width:'30px',height:'30px',background:'red',fontSize:'180px'}"> -->
+    <!-- <p>好烦哦</p>
+    </div>-->
+    <!-- <div>{{obj.nested.count}}</div> 
+    <input v-focu:abb.once />
+    <div v-example:foo.bar="baz">自定义函数</div>-->
+    <!-- <button @click="mutateDeeply">{{ obj.nested.count }}</button>
+    <button @click="state.count++">{{ state.count }}</button>-->
     <!--<input v-model="ttf" />
     <AsyncComp />
     <zhuce />-->
@@ -344,7 +466,7 @@ const {id} = object
     {{test}}
     <div value="test">ceshi</div>
     <div :value="test">ceshi2</div>-->
-  </div>
+    <!-- </div> -->
 
   <!--<p>
     Ask a yes/no question:
@@ -426,5 +548,27 @@ const {id} = object
 <style>
 #name {
   color: red;
+}
+.nested-enter-active .inner,
+.nested-leave-active .inner {
+  transition: all 3s ease-in-out;
+}
+
+.nested-enter-from .inner,
+.nested-leave-to .inner {
+  transform: translateX(30px);
+  opacity: 0;
+}
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+.list-leave-active {
+  position: absolute;
 }
 </style>
