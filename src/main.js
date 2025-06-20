@@ -1,10 +1,9 @@
-import './assets/main.css'
-
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router.js'
 import store from './store.js'
 import ElementPlus from 'element-plus'
+import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import 'element-plus/dist/index.css'
 
 
@@ -26,4 +25,6 @@ const app = createApp(App)
 //         console.log('Old value:', binding.oldValue);
 //     }
 // })
-app.use(router).use(store).use(ElementPlus).mount('#app')
+app.use(ElementPlus, {
+    locale: zhCn
+  }).use(router).use(store).use(ElementPlus).mount('#app')

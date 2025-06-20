@@ -4,6 +4,9 @@ import zhuce from './zhuce.vue'
 import loading from './loading.vue'
 import myself from './myself.vue'
 import App from './App.vue'
+import yzm from './yzm.vue'
+import vuexTest from './study/vuexTest.vue'
+import shoppingCart from './shoppingCart/index.vue'
 
 const routes = [
   { path:'/zhuce/:id', 
@@ -16,6 +19,9 @@ const routes = [
       myself:false
     }},
   { path:'/', component:myself },
+  { path:'/yzm', component:yzm },
+  { path:'/shoppingCart', component:shoppingCart },
+  { path:'/study/vuexTest', component:vuexTest },
   // { path:'/loading/:id', component:loading, props:route=>({query:route.query.q})}
 
   // { path: '/zhuce', component: zhuce, alias:'/zhu'},
