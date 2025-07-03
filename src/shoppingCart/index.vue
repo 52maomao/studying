@@ -6,67 +6,78 @@ import {
 export default {
     data() {
         return {
+            received: ref({}),
             totalchecked: ref(false),
             deleteList: ref([]),
             amount: ref(0),
             checkList: ref([]),
-            goods: ref([{
-                    id: 0,
-                    checked: false,
-                    title: '百合小店',
-                    name: '一束百合',
-                    shadow: 'hover',
-                    url: "https://inews.gtimg.com/om_bt/OFSSocYsCaklSLimIwHp4cm30Ae4idNRrx0DIR1yYgeXAAA/641",
-                    price: 20,
-                    number: 1,
-                    inventory: 2
-                },
-                {
-                    id: 1,
-                    checked: false,
-                    title: '玫瑰小店',
-                    name: '一束玫瑰',
-                    shadow: 'hover',
-                    url: '',
-                    price: 20,
-                    number: 2,
-                    inventory: 5
-                },
-                {
-                    id: 2,
-                    checked: false,
-                    title: '薰衣草小店',
-                    name: '一束薰衣草',
-                    shadow: 'hover',
-                    url: '',
-                    price: 30,
-                    number: 4,
-                    inventory: 5
-                }
-            ])
+            goods: this.$store.state.a.shoppingCartData,
+            // goods: ref([{
+            //         id: 0,
+            //         checked: false,
+            //         title: '百合小店',
+            //         name: '一束百合',
+            //         shadow: 'hover',
+            //         url: "https://inews.gtimg.com/om_bt/OFSSocYsCaklSLimIwHp4cm30Ae4idNRrx0DIR1yYgeXAAA/641",
+            //         price: 20,
+            //         number: 1,
+            //         inventory: 2
+            //     },
+            //     {
+            //         id: 1,
+            //         checked: false,
+            //         title: '玫瑰小店',
+            //         name: '一束玫瑰',
+            //         shadow: 'hover',
+            //         url: '',
+            //         price: 20,
+            //         number: 2,
+            //         inventory: 5
+            //     },
+            //     {
+            //         id: 2,
+            //         checked: false,
+            //         title: '薰衣草小店',
+            //         name: '一束薰衣草',
+            //         shadow: 'hover',
+            //         url: '',
+            //         price: 30,
+            //         number: 4,
+            //         inventory: 5
+            //     }
+            // ])
         }
     },
     methods: {
-        handleChange(num) {},
+        handleChange(item) {
+            console.log(item)
+            this.$store.commit('changeNum', item)
+        },
         checkChange() {
             this.amount = 0
             this.checkList = this.goods.filter((item) => {
                 return item.checked === true
             })
-            for (let i=0; i < this.checkList.length; i++) {
+            for (let i = 0; i < this.checkList.length; i++) {
                 this.amount += this.checkList[i].price * this.checkList[i].number
             }
         },
         checkDelete(index) {
-            if (index>=0) {
-                this.goods = this.goods.filter((item) => {
-                    return item.id !== index
-                })
+            if (index >= 0) {
+                this.$store.commit('deleteShoppingCartData', index)
+                
+                // this.goods = this.goods.filter((item) => {
+                //     return item.id !== index
+                // })
             } else {
-                this.goods = this.goods.filter((item) => {
-                    return item.checked === false
-                })
+                for(let i=0;i<this.checkList.length;i++){
+                    this.$store.commit('deleteShoppingCartData', this.checkList[i].id)
+                }
+                // this.goods = this.goods.filter((item) => {
+                //     return item.checked === false
+                // })
             }
+            this.goods = this.$store.state.a.shoppingCartData
         },
         totalCheckChange() {
             for (let i = 0; i < this.goods.length; i++) {
@@ -77,7 +88,7 @@ export default {
                 }
             }
             this.checkChange()
-        }
+        },
     },
     mounted() {}
 }
@@ -110,7 +121,7 @@ export default {
                                     <p>￥{{ item.price }}</p>
                                 </el-col>
                                 <el-col :span="5">
-                                    <el-input-number v-model="item.number" :min="1" :max='item.inventory' @change="handleChange(item.number)" />
+                                    <el-input-number v-model="item.number" :min="1" :max='item.inventory' @change="handleChange(item)" />
                                 </el-col>
                                 <el-col :span="3">
                                     <p>￥{{ item.price * item.number}}</p>
